@@ -1,10 +1,28 @@
 const express = require("express");
+const https = require("https");
 
 const app = express();
 
 
 
 app.get("/", function(request, response){
+
+  const url = "https://api.openweathermap.org/data/2.5/weather?q=London&appid=81c57053a8f7f4b3c1c54b34cec9dda1&units=imperial"
+
+  https.get(url, function(response) {
+    console.log(response.statusCode);
+
+    response.on("data", function(data){
+      const weatherData = JSON.parse(data)
+      const object = {
+        name: "Ayala",
+        favouriteFood: "Eggs"
+      }
+      console.log(JSON.stringify(object));
+      
+    });
+  });
+
   response.send("Server is up and running.");
 });
 
