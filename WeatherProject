@@ -14,12 +14,9 @@ app.get("/", function(request, response){
 
     response.on("data", function(data){
       const weatherData = JSON.parse(data)
-      const object = {
-        name: "Ayala",
-        favouriteFood: "Eggs"
-      }
-      console.log(JSON.stringify(object));
-      
+      const temp = weatherData.main.temp
+      const weatherDescription = weatherData.weather[0].description
+      console.log(weatherDescription);
     });
   });
 
